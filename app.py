@@ -9,10 +9,6 @@ import matplotlib.pyplot as plt
 from flask import Flask, render_template, request, Response
 app = Flask(__name__)
 
-df = pd.read_csv( "dataset/FARM001.csv", delimiter=",")
-df = df.drop(df[df['LATITUDINE_P'] == '-'].index)
-farmacie = gpd.GeoDataFrame(df, geometry = gpd.points_from_xy(df['LONGITUDINE_P'], df['LATITUDINE_P']), crs = 'EPSG:4326')
-
 @app.route('/', methods=['GET'])
 def home():
     return render_template('home.html')
